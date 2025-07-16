@@ -1,0 +1,1 @@
+# stam1na - a test suite for https://www.google.com #
