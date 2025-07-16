@@ -1,0 +1,29 @@
+{
+  "name": "stam1na",
+  "version": "1.0.0",
+  "description": "* stamina -> test suite | playwright + github actions + jenkins * basil * pulse * testbistro",
+  "homepage": "https://github.com/MarianBaba/stam1na#readme",
+  "bugs": {
+    "url": "https://github.com/MarianBaba/stam1na/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarianBaba/stam1na.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.0",
+    "eslint": "^9.31.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "playwright": "^1.54.1"
+  }
+}
