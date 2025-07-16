@@ -15,12 +15,15 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx playwright test tests/ --headed"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^24.0.14",
     "dotenv": "^17.2.0",
     "eslint": "^9.31.0",
     "prettier": "^3.6.2",
+    "reflect-metadata": "^0.2.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {

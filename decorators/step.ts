@@ -1,24 +1,16 @@
-import { getCurrentTimestamp } from "../utils/time";
+import "reflect-metadata";
 
-export function step(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+export function step(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
 	const originalMethod = descriptor.value;
 
-	descriptor.value = async function (...args: any[]) {
-		const timestamp = () => `[ ${getCurrentTimestamp()} ]`;
+	descriptor.value = function (...args: any[]) {
+		const timestamp = () => `[ ${new Date().toISOString()} ]`;
 
 		console.log(`${timestamp()} [ step start  -> ${propertyKey} ]`);
 
-		try {
-			const result = await originalMethod.apply(this, args);
-			console.log(`${timestamp()} [ step end -> ${propertyKey} ]`);
-			return result;
-		} catch (error: any) {
-			console.error(
-				`${timestamp()} [ ❗️ step error ❗️ -> ${propertyKey}: ${error.message || error} ]`
-			);
-			throw error;
-		}
-	};
+		const result = originalMethod.apply(this, args);
 
-	return descriptor;
+		console.log(`${timestamp()} [ step end -> ${propertyKey} ]`);
+		return result;
+	};
 }
