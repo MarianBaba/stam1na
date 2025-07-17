@@ -1,10 +1,10 @@
-import { Locator } from "playwright";
-import BasePage from "../base/BasePage";
+import { Locator } from 'playwright';
+import BasePage from '../base/BasePage';
 
 export default class HomePage extends BasePage {
-    private readonly button: Locator = this.page.locator("[aria-label='Consent']");
+  private readonly button: Locator = this.page.locator("[aria-label='Consent']");
 
-	async goToLoginPage() {
-		await this.button.click();
-	}
+  async goToLoginPage() {
+    await this.button.click();
+  }
 }

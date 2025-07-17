@@ -1,0 +1,23 @@
+name: Code Cleanup [prettier + eslint]
+
+on: [push]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Prettier
+        run: npm run format
+
+      - name: Lint
+        run: npm run lint

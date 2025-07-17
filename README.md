@@ -1,4 +1,5 @@
-# Stam1na 🚀  
+# Stam1na 🚀
+
 **An Automation Suite for [AutomationExercise.com](https://www.automationexercise.com)**
 
 Stam1na is a robust and scalable automation testing suite built to interact with and validate the functionalities of AutomationExercise.com, a sample e-commerce web application. It leverages modern automation frameworks and tools to provide end-to-end UI and functional testing, making it ideal for QA engineers, learners, and automation enthusiasts.
@@ -18,13 +19,13 @@ Stam1na is a robust and scalable automation testing suite built to interact with
 
 ## 🧱 Tech Stack
 
-| Component      | Technology         |
-|----------------|--------------------|
-| Programming Language | Python / JavaScript / Java *(based on your implementation)* |
-| Framework      | Selenium / Playwright / Cypress |
-| Test Runner    | Pytest / Jest / JUnit |
-| Reporting      | Allure / HTML Reports / Mochawesome |
-| CI/CD          | GitHub Actions, Jenkins (optional setup included) |
+| Component            | Technology                                                  |
+| -------------------- | ----------------------------------------------------------- |
+| Programming Language | Python / JavaScript / Java _(based on your implementation)_ |
+| Framework            | Selenium / Playwright / Cypress                             |
+| Test Runner          | Pytest / Jest / JUnit                                       |
+| Reporting            | Allure / HTML Reports / Mochawesome                         |
+| CI/CD                | GitHub Actions, Jenkins (optional setup included)           |
 
 ---
 
@@ -44,3 +45,4 @@ Clone the repository:
 ```bash
 git clone https://github.com/yourusername/stam1na.git
 cd stam1na
+```
