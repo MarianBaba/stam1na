@@ -1,16 +1,26 @@
-import "reflect-metadata";
+import { getCurrentTimestamp } from "../utils/time";
 
-export function step(target: any, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
-	const originalMethod = descriptor.value;
+export function step<This, Args extends never[], Return>(options?: {}) {
+  return function actualDecorator<
+    T extends (this: This, ...args: Args) => Promise<Return>
+  >(
+    target: T,
+    context: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Promise<Return>>
+  ): T {
+    async function replacementMethod(this: This, ...args: Args): Promise<Return> {
+      const methodName = context.name as string;
+	  const timestamp = getCurrentTimestamp();
+      console.log(`[ ${timestamp} ] step start -> ${methodName}`);
+      try {
+        const result = await target.call(this, ...args);
+        console.log(`[ ${timestamp} ] 🟢 step done -> ${methodName}`);
+        return result;
+      } catch (error) {
+		console.log(`[ ${timestamp} ] ‼️ step error -> ${methodName}: ${error}`);
+        throw error;
+      }
+    }
 
-	descriptor.value = function (...args: any[]) {
-		const timestamp = () => `[ ${new Date().toISOString()} ]`;
-
-		console.log(`${timestamp()} [ step start  -> ${propertyKey} ]`);
-
-		const result = originalMethod.apply(this, args);
-
-		console.log(`${timestamp()} [ step end -> ${propertyKey} ]`);
-		return result;
-	};
+    return replacementMethod as T;
+  };
 }

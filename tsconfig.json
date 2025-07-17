@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "commonjs",
-    "experimentalDecorators": true,
+    
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    
   }
 }
