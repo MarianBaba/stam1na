@@ -1,6 +1,6 @@
 import { getCurrentTimestamp } from '../utils/time';
 
-export function step<This, Args extends never[], Return>(options?: {}) {
+export function step<This, Args extends never[], Return>() {
   return function actualDecorator<T extends (this: This, ...args: Args) => Promise<Return>>(
     target: T,
     context: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Promise<Return>>
