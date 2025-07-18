@@ -4,13 +4,37 @@ import { defineConfig, devices } from '@playwright/test';
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
-
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
+
+
+const locales = [
+  { name: 'English', locale: 'en-US' },
+  { name: 'Italian', locale: 'it-IT' },
+];
+
+const browsers = [
+  { name: 'chromium', device: devices['Desktop Chrome'] },
+  { name: 'firefox', device: devices['Desktop Firefox'] },
+  { name: 'webkit', device: devices['Desktop Safari'] },
+];
+
+// Generate a matrix: all locales × all browsers
+const projects = [];
+
+for (const lang of locales) {
+  for (const browser of browsers) {
+    projects.push({
+      name: `${lang.name} - ${browser.name}`,
+      use: {
+        ...browser.device,
+        locale: lang.locale,
+      },
+    });
+  }
+}
+
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
@@ -32,22 +56,8 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    ...projects
 
     /* Test against mobile viewports. */
     // {

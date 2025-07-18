@@ -4,13 +4,25 @@
     "es2021": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "prettier"],
+  "extends": [
+    "eslint:recommended",
+    "prettier"
+  ],
   "parserOptions": {
     "ecmaVersion": 2021,
     "sourceType": "module"
   },
   "rules": {
-    "no-unused-vars": "warn",
-    "semi": ["error", "always"]
+    "eqeqeq": ["error", "always"],
+    "curly": ["error", "all"],
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-debugger": "error",
+    "no-alert": "error",
+    "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "no-undef": "error",
+    "semi": ["error", "always"],
+    "quotes": ["error", "single", { "avoidEscape": true }],
+    "prefer-const": "error",
+    "object-shorthand": ["error", "always"]
   }
 }

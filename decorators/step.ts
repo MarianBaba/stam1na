@@ -8,7 +8,7 @@ export function step<This, Args extends never[], Return>() {
     async function replacementMethod(this: This, ...args: Args): Promise<Return> {
       const methodName = context.name as string;
       const timestamp = getCurrentTimestamp();
-      console.log(`[ ${timestamp} ] step start -> ${methodName}`);
+      console.log(`[ ${timestamp} ] 🟡 step start -> ${methodName}`);
       try {
         const result = await target.call(this, ...args);
         console.log(`[ ${timestamp} ] 🟢 step done -> ${methodName}`);
