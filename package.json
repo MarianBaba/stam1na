@@ -1,7 +1,6 @@
 {
   "name": "stam1na",
   "version": "1.0.0",
-  "description": "* stamina -> test suite | playwright + github actions + jenkins * basil * pulse * testbistro",
   "homepage": "https://github.com/MarianBaba/stam1na#readme",
   "bugs": {
     "url": "https://github.com/MarianBaba/stam1na/issues"
@@ -15,16 +14,22 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write \"**/*.{js,ts,json,css,md}\"",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "test": "npx playwright test tests/ --headed"
   },
   "devDependencies": {
+    "@eslint/js": "^9.31.0",
     "@playwright/test": "^1.54.1",
     "@types/node": "^24.0.14",
     "dotenv": "^17.2.0",
     "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.5",
+    "globals": "^16.3.0",
     "prettier": "^3.6.2",
     "reflect-metadata": "^0.2.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.37.0"
   },
   "dependencies": {
     "playwright": "^1.54.1"
