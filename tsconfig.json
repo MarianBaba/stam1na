@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES5",
     "module": "commonjs",
-
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": false
   }
 }

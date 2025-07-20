@@ -21,9 +21,16 @@ export default abstract class BasePage {
   @step()
   async acceptPrivacyIfVisible(): Promise<void> {
     const button = this.page.locator('[class="fc-button fc-cta-consent fc-primary-button"]');
-    await button.waitFor({ state: 'visible', timeout: 1000 }).catch(() => {});
-    if (await button.isVisible()) {
-      await button.click();
+    const maxWait = 3000;
+    const pollInterval = maxWait / 10;
+
+    const start = Date.now();
+    while (Date.now() - start < maxWait) {
+      if (await button.isVisible()) {
+        await button.click();
+        break;
+      }
+      await this.page.waitForTimeout(pollInterval);
     }
   }
 

@@ -4,7 +4,6 @@ import { step } from '../../decorators/step';
 import config from '../../config';
 
 export default class HomePage extends BasePage {
-
   @step()
   async acceptPrivacyIfVisible() {
     if (await this.privacyConsentButton.isVisible()) {

@@ -4,6 +4,10 @@
 
 Stam1na is a robust and scalable automation testing suite built to interact with and validate the functionalities of AutomationExercise.com, a sample e-commerce web application. It leverages modern automation frameworks and tools to provide end-to-end UI and functional testing, making it ideal for QA engineers, learners, and automation enthusiasts.
 
+[ ] faker needs to choose only between a select list of countries
+[ ] scroll into view elements when signing up
+[ ] clean the code
+
 ---
 
 ## ✨ Features
