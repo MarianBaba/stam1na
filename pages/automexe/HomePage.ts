@@ -1,12 +1,9 @@
-import { Locator, Page } from 'playwright';
+import { Page } from 'playwright';
 import BasePage from '../base/BasePage';
 import { step } from '../../decorators/step';
 import config from '../../config';
 
 export default class HomePage extends BasePage {
-  private readonly privacyConsentButton: Locator = this.page.locator(
-    '[class="fc-button fc-cta-consent fc-primary-button"]'
-  );
 
   @step()
   async acceptPrivacyIfVisible() {
@@ -17,7 +14,6 @@ export default class HomePage extends BasePage {
 
   @step()
   private async navigateToHomePage() {
-    console.log("🟣" + config.url);
     await this.goto(config.url);
   }
 

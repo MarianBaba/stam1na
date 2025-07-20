@@ -14,11 +14,25 @@ export default abstract class BasePage {
     this.page = page;
   }
 
+  get privacyConsentButton(): Locator {
+    return this.page.locator('[class="fc-button fc-cta-consent fc-primary-button"]');
+  }
+
+  @step()
+  async acceptPrivacyIfVisible(): Promise<void> {
+    const button = this.page.locator('[class="fc-button fc-cta-consent fc-primary-button"]');
+    await button.waitFor({ state: 'visible', timeout: 1000 }).catch(() => {});
+    if (await button.isVisible()) {
+      await button.click();
+    }
+  }
+
   @step()
   async goto(url: string): Promise<void> {
     if (!isValidUrl(url)) {
       throw new Error('invalid url');
     }
+    this.acceptPrivacyIfVisible();
     await this.page.goto(url);
   }
 
@@ -28,7 +42,7 @@ export default abstract class BasePage {
   }
 
   @step()
-  static async openEmptyPage(page: Page): Promise<Page> {
+  protected static async openEmptyPage(page: Page): Promise<Page> {
     const newPage = await page.context().newPage();
     await newPage.setViewportSize(this.viewportSize);
     return newPage;
