@@ -6,7 +6,6 @@ import { expect, Locator } from 'playwright/test';
 import { User } from '../../resources/data/user/types';
 import { Title } from '../../enums/Title';
 
-
 export default class SignUpPage extends BasePage {
   private readonly path = '/signup';
 
@@ -43,27 +42,71 @@ export default class SignUpPage extends BasePage {
   async navigate(): Promise<void> {
     await this.goto(`${config.url}${this.path}`);
   }
-
   @step()
-  public async signup(user: User): Promise<void> {
-    const birthDay = '1978-03-21';
-    const [year, month, day] = birthDay.split('-');
-
-    user.title === Title.MR
-      ? await this.titleMaleRadioButton.click()
-      : await this.titleFemaleRadioButton.click();
-    this.passwordInput.fill(user.password);
+  private async selectTitle(title: Title): Promise<void> {
+    await this.titleMaleRadioButton.scrollIntoViewIfNeeded();
+    if (title === Title.MR) {
+      await this.titleMaleRadioButton.click();
+    } else {
+      await this.titleFemaleRadioButton.click();
+    }
+  }
+  @step()
+  private async fillPassword(password: string): Promise<void> {
+    await this.passwordInput.scrollIntoViewIfNeeded();
+    await this.passwordInput.fill(password);
+  }
+  @step()
+  private async selectBirthDate(day: string, month: string, year: string): Promise<void> {
+    await this.dayOfBirthSelect.scrollIntoViewIfNeeded();
     await this.page.selectOption(this.daysLocator, day);
     await this.page.selectOption(this.monthsLocator, month);
     await this.page.selectOption(this.yearsLocator, year);
-    this.firstNameInput.fill(user.firstName);
-    this.lastNameInput.fill(user.familyName);
-    this.companyInput.fill(user.company);
-    this.addressInput.fill(user.address);
-    await this.page.selectOption("[id=country]", "United States");
-    this.stateInput.fill(user.state);
-    this.cityInput.fill(user.city);
-    this.zipcodeInput.fill(user.zipcode);
-    this.mobileNumberInput.fill(user.mobileNumber);
+  }
+  @step()
+  private async fillPersonalInfo(user: User): Promise<void> {
+    await this.firstNameInput.scrollIntoViewIfNeeded();
+    await this.firstNameInput.fill(user.firstName);
+
+    await this.lastNameInput.scrollIntoViewIfNeeded();
+    await this.lastNameInput.fill(user.familyName);
+
+    await this.companyInput.scrollIntoViewIfNeeded();
+    await this.companyInput.fill(user.company);
+  }
+  @step()
+  private async selectCountry(country: string): Promise<void> {
+    await this.countrySelect.scrollIntoViewIfNeeded();
+    await this.page.selectOption('[id=country]', country);
+  }
+  @step()
+  private async fillAddress(user: User): Promise<void> {
+    await this.addressInput.scrollIntoViewIfNeeded();
+    await this.addressInput.fill(user.address);
+
+    await this.stateInput.scrollIntoViewIfNeeded();
+    await this.stateInput.fill(user.state);
+
+    await this.cityInput.scrollIntoViewIfNeeded();
+    await this.cityInput.fill(user.city);
+
+    await this.zipcodeInput.scrollIntoViewIfNeeded();
+    await this.zipcodeInput.fill(user.zipcode);
+
+    await this.mobileNumberInput.scrollIntoViewIfNeeded();
+    await this.mobileNumberInput.fill(user.mobileNumber);
+  }
+
+  @step()
+  public async signup(user: User): Promise<void> {
+    const [year, month, day] = user.birthDay.split('-');
+    const normalizedMonth = String(Number(month));
+
+    await this.selectTitle(user.title);
+    await this.fillPassword(user.password);
+    await this.selectBirthDate(day, normalizedMonth, year);
+    await this.fillPersonalInfo(user);
+    await this.selectCountry(user.country);
+    await this.fillAddress(user);
   }
 }

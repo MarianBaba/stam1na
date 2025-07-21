@@ -10,13 +10,13 @@ import { defineConfig, devices } from '@playwright/test';
 
 const locales = [
   { name: 'English', locale: 'en-US' },
-  //{ name: 'Italian', locale: 'it-IT' },
+  { name: 'Italian', locale: 'it-IT' },
 ];
 
 const browsers = [
   { name: 'chromium', device: devices['Desktop Chrome'] },
-  // { name: 'firefox', device: devices['Desktop Firefox'] },
-  // { name: 'webkit ', device: devices['Desktop Safari'] },
+  { name: 'firefox', device: devices['Desktop Firefox'] },
+  { name: 'webkit ', device: devices['Desktop Safari'] },
 ];
 
 // Generate a matrix: all locales × all browsers

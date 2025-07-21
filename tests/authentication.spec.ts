@@ -5,10 +5,12 @@ import SignUpPage from '../pages/automexe/SignUpPage';
 
 test.describe('User Authentication', () => {
   test('registerUser @full-regression @authentication', async ({ page }) => {
+    // setup : test data
+    const user = await getUser();
+
     const loginSignupPage = new LoginSignupPage(page);
     await loginSignupPage.navigate();
     await loginSignupPage.assertUrl();
-    const user = await getUser();
     await loginSignupPage.signup(user);
     const signupPage = new SignUpPage(page);
     await signupPage.assertUrl();
