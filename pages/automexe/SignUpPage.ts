@@ -28,6 +28,7 @@ export default class SignUpPage extends BasePage {
   private readonly zipcodeInput: Locator = this.page.locator('[id=zipcode]');
   private readonly mobileNumberInput: Locator = this.page.locator('[id=mobile_number]');
   private readonly signUpSubmitButton: Locator = this.page.locator('[data-qa=create-account]');
+  private readonly accountCreatedTitle: Locator = this.page.locator('[data-qa="account-created"]');
 
   private get url(): string {
     return `${config.url}${this.path}`;
@@ -58,43 +59,51 @@ export default class SignUpPage extends BasePage {
   }
   @step()
   private async selectBirthDate(day: string, month: string, year: string): Promise<void> {
-    await this.dayOfBirthSelect.scrollIntoViewIfNeeded();
+    await this.scroll(this.dayOfBirthSelect);
     await this.page.selectOption(this.daysLocator, day);
+    await this.scroll(this.monthOfBirthSelect);
     await this.page.selectOption(this.monthsLocator, month);
+    await this.scroll(this.yearOfBirthSelect);
     await this.page.selectOption(this.yearsLocator, year);
   }
   @step()
   private async fillPersonalInfo(user: User): Promise<void> {
-    await this.firstNameInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.firstNameInput);
     await this.firstNameInput.fill(user.firstName);
 
-    await this.lastNameInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.lastNameInput);
     await this.lastNameInput.fill(user.familyName);
 
-    await this.companyInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.companyInput);
     await this.companyInput.fill(user.company);
   }
   @step()
   private async selectCountry(country: string): Promise<void> {
-    await this.countrySelect.scrollIntoViewIfNeeded();
+    await this.scroll(this.countrySelect);
     await this.page.selectOption('[id=country]', country);
   }
   @step()
   private async fillAddress(user: User): Promise<void> {
-    await this.addressInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.addressInput);
     await this.addressInput.fill(user.address);
 
-    await this.stateInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.stateInput);
     await this.stateInput.fill(user.state);
 
-    await this.cityInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.cityInput);
     await this.cityInput.fill(user.city);
 
-    await this.zipcodeInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.zipcodeInput);
     await this.zipcodeInput.fill(user.zipcode);
 
-    await this.mobileNumberInput.scrollIntoViewIfNeeded();
+    await this.scroll(this.mobileNumberInput);
     await this.mobileNumberInput.fill(user.mobileNumber);
+  }
+
+  @step()
+  private async submitSignupForm(): Promise<void> {
+    await this.scroll(this.signUpSubmitButton);
+    await this.signUpSubmitButton.click();
   }
 
   @step()
@@ -108,5 +117,13 @@ export default class SignUpPage extends BasePage {
     await this.fillPersonalInfo(user);
     await this.selectCountry(user.country);
     await this.fillAddress(user);
+    await this.submitSignupForm();
+    await this.accountCreatedTitle.waitFor({ state: 'visible', timeout: 3000 });
+  }
+
+  private async scroll(locator: Locator) {
+    await locator.evaluate((element) => {
+      element.scrollIntoView({ behavior: 'instant', block: 'center' });
+    })
   }
 }

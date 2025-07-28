@@ -22,7 +22,7 @@ export default abstract class BasePage {
   async acceptPrivacyIfVisible(): Promise<void> {
     const button = this.page.locator('[class="fc-button fc-cta-consent fc-primary-button"]');
     const maxWait = 3000;
-    const pollInterval = maxWait / 10;
+    const pollInterval = maxWait / 5;
 
     const start = Date.now();
     while (Date.now() - start < maxWait) {
