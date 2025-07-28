@@ -48,7 +48,7 @@ export async function createUser(): Promise<User> {
       throw new Error(`GraphQL error: ${JSON.stringify(errors)} 🔴`);
     }
     return data.createUser;
-  } catch (error: any) {
-    throw new Error(`Failed to create user: ${error.message} 🔴`);
+  } catch (error: unknown) {
+    throw new Error(`Failed to create user: ${error} 🔴`);
   }
 }

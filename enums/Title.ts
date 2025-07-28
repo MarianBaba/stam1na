@@ -1,4 +1,4 @@
 export enum Title {
-    MR = 'MR',
-    MRS = 'MRS'
+  MR = 'MR',
+  MRS = 'MRS',
 }

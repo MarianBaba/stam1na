@@ -1,4 +1,4 @@
-import test, { expect } from 'playwright/test';
+import test from 'playwright/test';
 import { getUser } from '../resources/data/user';
 import { LoginSignupPage } from '../pages/automexe/LoginSignupPage';
 import SignUpPage from '../pages/automexe/SignUpPage';

@@ -1,4 +1,3 @@
-import { Page } from 'playwright';
 import config from '../../config';
 import { step } from '../../decorators/step';
 import BasePage from '../base/BasePage';
@@ -124,6 +123,6 @@ export default class SignUpPage extends BasePage {
   private async scroll(locator: Locator) {
     await locator.evaluate((element) => {
       element.scrollIntoView({ behavior: 'instant', block: 'center' });
-    })
+    });
   }
 }

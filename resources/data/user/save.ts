@@ -17,15 +17,19 @@ export async function saveUser({ email, password }: SaveUserInput): Promise<void
   `;
 
   try {
-    const response = await axios.post('http://localhost:4000/graphql', {
-      query: mutation,
-      variables: { email, password },
-    }, {
-      headers: {
-        'Content-Type': 'application/json',
-        // 'Authorization': `Bearer ${yourToken}`,
+    const response = await axios.post(
+      'http://localhost:4000/graphql',
+      {
+        query: mutation,
+        variables: { email, password },
       },
-    });
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Bearer ${yourToken}`,
+        },
+      }
+    );
 
     const { data } = response;
 
@@ -35,7 +39,7 @@ export async function saveUser({ email, password }: SaveUserInput): Promise<void
     }
 
     console.log('✅ User saved:', data.data.saveUser);
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (axios.isAxiosError(error)) {
       console.error('❌ Axios error:', error.response?.data || error.message);
     } else {

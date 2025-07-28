@@ -8,7 +8,9 @@ export class LoginSignupPage extends BasePage {
   private readonly path = `/login`;
 
   private readonly loginEmailInput: Locator = this.page.locator('input[data-qa="login-email"]');
-  private readonly loginPasswordInput: Locator = this.page.locator('input[data-qa="login-password"]');
+  private readonly loginPasswordInput: Locator = this.page.locator(
+    'input[data-qa="login-password"]'
+  );
   private readonly loginButton: Locator = this.page.locator('button[data-qa="login-button"]');
   private readonly signupNameInput: Locator = this.page.locator('input[data-qa="signup-name"]');
   private readonly signupEmailInput: Locator = this.page.locator('input[data-qa="signup-email"]');
