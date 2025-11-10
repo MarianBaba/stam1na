@@ -2,7 +2,6 @@ import { APIRequestContext, expect } from '@playwright/test';
 import { step } from '@decorators/step';
 import config from '@config';
 import { log } from '@utils/logger';
-import { ProductsPostResponse } from '@resources/data/types/product/ProductApiResponse';
 
 export class BaseApi {
   constructor(protected request: APIRequestContext) {}
@@ -16,18 +15,35 @@ export class BaseApi {
   }
 
   @step()
-  protected async post<T>(endpoint: string, data?: unknown): Promise<ProductsPostResponse<T>> {
+  protected async post<T>(endpoint: string, data?: unknown): Promise<T> {
     log(`POST ${config.API_BASE_URL}${endpoint}`);
     const response = await this.request.post(`${config.API_BASE_URL}${endpoint}`, { data });
     const text = await response.text();
-    let json: ProductsPostResponse<T>;
+    let json;
     try {
-      json = JSON.parse(text) as ProductsPostResponse<T>;
+      json = JSON.parse(text) as T;
     } catch {
       json = {
         responseCode: response.status(),
-        message: text as unknown as T,
-      };
+        message: text as unknown,
+      } as T;
+    }
+    return json;
+  }
+
+  @step()
+  protected async put<T>(endpoint: string, data?: unknown): Promise<T> {
+    log(`PUT ${config.API_BASE_URL}${endpoint}`);
+    const response = await this.request.put(`${config.API_BASE_URL}${endpoint}`, { data });
+    const text = await response.text();
+    let json;
+    try {
+      json = JSON.parse(text) as T;
+    } catch {
+      json = {
+        responseCode: response.status(),
+        message: text as unknown,
+      } as T;
     }
     return json;
   }

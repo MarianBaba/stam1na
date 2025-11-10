@@ -1,7 +1,10 @@
 import { APIRequestContext } from '@playwright/test';
 import { step } from '@decorators/step';
 import { BaseApi } from '@resources/api/base/BaseApi';
-import { ProductsGetResponse } from '@resources/data/types/product/ProductApiResponse';
+import {
+  ProductsGetResponse,
+  ProductsPostResponse,
+} from '@resources/data/types/product/ProductApiResponse';
 
 export class ProductsApi extends BaseApi {
   constructor(protected request: APIRequestContext) {
@@ -15,6 +18,6 @@ export class ProductsApi extends BaseApi {
 
   @step()
   async postToProductsEndpoint(body?: unknown) {
-    return await this.post<string>('/productsList', body);
+    return await this.post<ProductsPostResponse>('/productsList', body);
   }
 }

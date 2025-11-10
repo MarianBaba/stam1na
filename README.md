@@ -89,8 +89,8 @@ cd stam1na
 
 - [x] **API 1 — GET All Products List**
 - [x] **API 2 — POST to `/api/productsList` (unsupported request)**
-- [ ] **API 3 — GET All Brands List**
-- [ ] **API 4 — PUT to `/api/brandsList` (unsupported request)**
+- [x] **API 3 — GET All Brands List**
+- [x] **API 4 — PUT to `/api/brandsList` (unsupported request)**
 
 ### 🔍 Product Search APIs
 

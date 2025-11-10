@@ -4,7 +4,7 @@ export type ProductsGetResponse = {
   products: Product[];
 };
 
-export type ProductsPostResponse<T> = {
+export type ProductsPostResponse = {
   responseCode: number;
-  message: T;
+  message: string;
 };

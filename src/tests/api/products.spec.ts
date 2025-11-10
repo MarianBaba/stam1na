@@ -1,11 +1,14 @@
 import { expect, test } from '@playwright/test';
 import { ProductsApi } from '@resources/api/ProductsApi';
-import { ProductsPostResponse } from '@resources/data/types/product/ProductApiResponse';
+import {
+  ProductsGetResponse,
+  ProductsPostResponse,
+} from '@resources/data/types/product/ProductApiResponse';
 
 test.describe('Products API', () => {
   test('getAllProducts @smoke @no-regression @api @product', async ({ request }) => {
     const productsApi = new ProductsApi(request);
-    const data = await productsApi.getAllProducts();
+    const data: ProductsGetResponse = await productsApi.getAllProducts();
 
     expect(data).toHaveProperty('products');
     expect(Array.isArray(data.products)).toBe(true);
@@ -25,7 +28,7 @@ test.describe('Products API', () => {
 
   test('postToProductsEndpoint @api @negative @product', async ({ request }) => {
     const productsApi = new ProductsApi(request);
-    const response: ProductsPostResponse<string> = await productsApi.postToProductsEndpoint();
+    const response: ProductsPostResponse = await productsApi.postToProductsEndpoint();
 
     expect(response.responseCode).toBe(405);
     expect(response.message).toContain('This request method is not supported');
