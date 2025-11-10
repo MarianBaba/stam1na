@@ -1,7 +1,7 @@
 import { Page } from 'playwright';
-import BasePage from '../base/BasePage';
-import { step } from '../../decorators/step';
-import config from '../../config';
+import BasePage from '@pages/base/BasePage';
+import { step } from '@decorators/step';
+import config from '@config';
 
 export default class HomePage extends BasePage {
   @step()

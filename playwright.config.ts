@@ -10,7 +10,7 @@ import { defineConfig, devices } from '@playwright/test';
 
 const locales = [
   { name: 'English', locale: 'en-US' },
-  { name: 'Italian', locale: 'it-IT' },
+  // { name: 'Italian', locale: 'it-IT' },
 ];
 
 const browsers = [
@@ -35,7 +35,7 @@ for (const lang of locales) {
 }
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './src/tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */

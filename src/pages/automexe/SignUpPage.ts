@@ -1,9 +1,9 @@
-import config from '../../config';
-import { step } from '../../decorators/step';
-import BasePage from '../base/BasePage';
+import config from '@config';
+import { step } from '@decorators/step';
+import BasePage from '@pages/base/BasePage';
 import { expect, Locator } from 'playwright/test';
-import { User } from '../../resources/data/user/types';
-import { Title } from '../../enums/Title';
+import { User } from '@resources/data/types/user/types';
+import { Title } from '@enums/Title';
 
 export default class SignUpPage extends BasePage {
   private readonly path = '/signup';

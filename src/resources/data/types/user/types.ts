@@ -1,4 +1,4 @@
-import { Title } from '../../../enums/Title';
+import { Title } from '../../../../enums/Title';
 
 export type User = {
   id: string;

@@ -3,6 +3,15 @@
     "target": "ES5",
     "module": "commonjs",
     "esModuleInterop": true,
-    "emitDecoratorMetadata": false
+    "emitDecoratorMetadata": false,
+    "baseUrl": "src",
+    "paths": {
+      "@decorators/*": ["decorators/*"],
+      "@enums/*": ["enums/*"],
+      "@pages/*": ["pages/*"],
+      "@resources/*": ["resources/*"],
+      "@utils/*": ["utils/*"],
+      "@config": ["../config.ts"]
+    }
   }
 }

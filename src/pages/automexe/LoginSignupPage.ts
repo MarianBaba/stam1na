@@ -1,8 +1,8 @@
 import { Locator, Page, expect } from '@playwright/test';
-import { step } from '../../decorators/step';
-import BasePage from '../base/BasePage';
-import config from '../../config';
-import { User } from '../../resources/data/user/types';
+import { step } from '@decorators/step';
+import BasePage from '@pages/base/BasePage';
+import config from '@config';
+import { User } from '@resources/data/types/user/types';
 
 export class LoginSignupPage extends BasePage {
   private readonly path = `/login`;

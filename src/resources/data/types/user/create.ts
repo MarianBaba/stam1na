@@ -1,4 +1,4 @@
-import config from '../../../config';
+import config from '../../../../../config';
 import { User } from './types';
 import axios from 'axios';
 
@@ -8,7 +8,7 @@ if (!GRAPHQL_URL) {
   throw new Error('GRAPHQL ENDPOINT not defined 🔴');
 }
 
-export async function createUser(): Promise<User> {
+export async function cdxwes2createUser(): Promise<User> {
   const query = `
     mutation {
         createUser {

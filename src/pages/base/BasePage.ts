@@ -1,7 +1,7 @@
 import { Locator, Page } from 'playwright';
-import env from '../../utils/env';
-import { step } from '../../decorators/step';
-import { isValidUrl } from '../../utils/url';
+import env from '@utils/env';
+import { step } from '@decorators/step';
+import { isValidUrl } from '@utils/url';
 
 export default abstract class BasePage {
   protected static readonly viewportSize = {

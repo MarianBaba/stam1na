@@ -4,3 +4,5 @@ import { User } from './types';
 export async function getUser(): Promise<User> {
   return await createUser();
 }
+
+export async function getRandomRegisteredUser(): Promise<User> {}

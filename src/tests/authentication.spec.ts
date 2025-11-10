@@ -1,13 +1,12 @@
 import test from 'playwright/test';
-import { getUser } from '../resources/data/user';
+import { getUser } from '../resources/data/types/user';
 import { LoginSignupPage } from '../pages/automexe/LoginSignupPage';
 import SignUpPage from '../pages/automexe/SignUpPage';
-import { saveUser } from '../resources/data/user/save';
-import { User } from '../resources/data/user/types';
+import { saveUser } from '../resources/data/types/user/save';
+import { User } from '../resources/data/types/user/types';
 
 test.describe('User Authentication', () => {
   test('registerUser @full-regression @authentication', async ({ page }) => {
-    // setup : test data
     let user: User;
     await test.step('setup: get user data', async () => {
       user = await getUser();
@@ -25,8 +24,4 @@ test.describe('User Authentication', () => {
       await saveUser({ email: user.email, password: user.password });
     });
   });
-  //   test('registerUserWithExistingEmail @full-regression @authentication', async ({ page }) => {});
-  //   test('loginUserCorrectCredentials @full-regression @authentication', async ({ page }) => {});
-  //   test('loginUserIncorrectCredentials @full-regression @authentication', async ({ page }) => {});
-  //   test('logout @full-regression @authentication', async ({ page }) => {});
 });
