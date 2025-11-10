@@ -1,7 +1,7 @@
 import { Locator, Page } from 'playwright';
-import env from '../../utils/env';
-import { step } from '../../decorators/step';
-import { isValidUrl } from '../../utils/url';
+import env from '@utils/env';
+import { step } from '@decorators/step';
+import { isValidUrl } from '@utils/url';
 
 export default abstract class BasePage {
   protected static readonly viewportSize = {
@@ -14,11 +14,32 @@ export default abstract class BasePage {
     this.page = page;
   }
 
+  get privacyConsentButton(): Locator {
+    return this.page.locator('[class="fc-button fc-cta-consent fc-primary-button"]');
+  }
+
+  @step()
+  async acceptPrivacyIfVisible(): Promise<void> {
+    const button = this.page.locator('[class="fc-button fc-cta-consent fc-primary-button"]');
+    const maxWait = 3000;
+    const pollInterval = maxWait / 5;
+
+    const start = Date.now();
+    while (Date.now() - start < maxWait) {
+      if (await button.isVisible()) {
+        await button.click();
+        break;
+      }
+      await this.page.waitForTimeout(pollInterval);
+    }
+  }
+
   @step()
   async goto(url: string): Promise<void> {
     if (!isValidUrl(url)) {
       throw new Error('invalid url');
     }
+    this.acceptPrivacyIfVisible();
     await this.page.goto(url);
   }
 
@@ -28,7 +49,7 @@ export default abstract class BasePage {
   }
 
   @step()
-  static async openEmptyPage(page: Page): Promise<Page> {
+  protected static async openEmptyPage(page: Page): Promise<Page> {
     const newPage = await page.context().newPage();
     await newPage.setViewportSize(this.viewportSize);
     return newPage;

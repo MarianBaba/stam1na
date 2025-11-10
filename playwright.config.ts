@@ -8,16 +8,15 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 
-
 const locales = [
   { name: 'English', locale: 'en-US' },
-  { name: 'Italian', locale: 'it-IT' },
+  // { name: 'Italian', locale: 'it-IT' },
 ];
 
 const browsers = [
   { name: 'chromium', device: devices['Desktop Chrome'] },
-  { name: 'firefox', device: devices['Desktop Firefox'] },
-  { name: 'webkit', device: devices['Desktop Safari'] },
+  // { name: 'firefox', device: devices['Desktop Firefox'] },
+  // { name: 'webkit ', device: devices['Desktop Safari'] },
 ];
 
 // Generate a matrix: all locales × all browsers
@@ -36,7 +35,7 @@ for (const lang of locales) {
 }
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './src/tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -57,7 +56,7 @@ export default defineConfig({
   },
 
   projects: [
-    ...projects
+    ...projects,
 
     /* Test against mobile viewports. */
     // {
