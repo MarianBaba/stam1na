@@ -56,32 +56,32 @@ cd stam1na
 
 ## 📂 UI Test Cases
 
-- [ ] **1. Register User**
-- [ ] **2. Login User with correct email and password**
-- [ ] **3. Login User with incorrect email and password**
-- [ ] **4. Logout User**
-- [ ] **5. Register User with existing email**
-- [ ] **6. Contact Us Form**
-- [ ] **7. Verify Test Cases Page**
-- [ ] **8. Verify All Products and product detail page**
-- [ ] **9. Search Product**
-- [ ] **10. Verify Subscription in Home Page**
-- [ ] **11. Verify Subscription in Cart Page**
-- [ ] **12. Add Products in Cart**
-- [ ] **13. Verify Product Quantity in Cart**
-- [ ] **14. Place Order: Register while Checkout**
-- [ ] **15. Place Order: Register before Checkout**
-- [ ] **16. Place Order: Login before Checkout**
-- [ ] **17. Remove Products From Cart**
-- [ ] **18. View Category Products**
-- [ ] **19. View & Cart Brand Products**
-- [ ] **20. Search Products and Verify Cart After Login**
-- [ ] **21. Add Review on Product**
-- [ ] **22. Add to Cart from Recommended Items**
-- [ ] **23. Verify Address Details in Checkout Page**
-- [ ] **24. Download Invoice after Purchase Order**
-- [ ] **25. Verify Scroll Up using ‘Arrow’ button and Scroll Down functionality**
-- [ ] **26. Verify Scroll Up without ‘Arrow’ button and Scroll Down functionality**
+- [ ] **1 - Register User**
+- [ ] **2 - Login User with correct email and password**
+- [ ] **3 - Login User with incorrect email and password**
+- [ ] **4 - Logout User**
+- [ ] **5 - Register User with existing email**
+- [ ] **6 - Contact Us Form**
+- [ ] **7 - Verify Test Cases Page**
+- [ ] **8 - Verify All Products and product detail page**
+- [ ] **9 - Search Product**
+- [ ] **10 - Verify Subscription in Home Page**
+- [ ] **11 - Verify Subscription in Cart Page**
+- [ ] **12 - Add Products in Cart**
+- [ ] **13 - Verify Product Quantity in Cart**
+- [ ] **14 - Place Order: Register while Checkout**
+- [ ] **15 - Place Order: Register before Checkout**
+- [ ] **16 - Place Order: Login before Checkout**
+- [ ] **17 - Remove Products From Cart**
+- [ ] **18 - View Category Products**
+- [ ] **19 - View & Cart Brand Products**
+- [ ] **20 - Search Products and Verify Cart After Login**
+- [ ] **21 - Add Review on Product**
+- [ ] **22 - Add to Cart from Recommended Items**
+- [ ] **23 - Verify Address Details in Checkout Page**
+- [ ] **24 - Download Invoice after Purchase Order**
+- [ ] **25 - Verify Scroll Up using ‘Arrow’ button and Scroll Down functionality**
+- [ ] **26 - Verify Scroll Up without ‘Arrow’ button and Scroll Down functionality**
 
 ## 🔧 API Test Cases
 
@@ -105,8 +105,8 @@ cd stam1na
 
 ### 👤 User Account APIs
 
-- [x] **API 10: POST To Verify Login with invalid details**
+- [x] **API 10 - POST To Verify Login with invalid details**
 - [x] **API 11 — POST Create Account**
-- [x] **API 12 — DELETE User Account**
-- [x] **API 13: PUT METHOD To Update User Account**
-- [x] **API 14: GET user account detail by email**
+- [x] **API 12 - DELETE User Account**
+- [x] **API 13 - PUT METHOD To Update User Account**
+- [x] **API 14 - GET user account detail by email**
