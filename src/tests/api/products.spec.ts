@@ -3,6 +3,7 @@ import { ProductsApi } from '@resources/api/ProductsApi';
 import {
   ProductsGetResponse,
   ProductsPostResponse,
+  SearchProductsResponse,
 } from '@resources/data/types/product/ProductApiResponse';
 
 test.describe('Products API', () => {
@@ -32,5 +33,47 @@ test.describe('Products API', () => {
 
     expect(response.responseCode).toBe(405);
     expect(response.message).toContain('This request method is not supported');
+  });
+
+  const productsToSearch = ['tshirt', 'top'];
+
+  for (const product of productsToSearch) {
+    test(`searchProducts${product} @smoke @no-regression @search @api @product`, async ({
+      request,
+    }) => {
+      const productsApi = new ProductsApi(request);
+
+      const response: SearchProductsResponse = await productsApi.searchProducts(product);
+
+      expect(response).toBeTruthy();
+      expect(response.responseCode).toBe(200);
+
+      const products = response.products;
+      expect(Array.isArray(products)).toBe(true);
+      expect(products.length).toBeGreaterThan(0);
+
+      products.forEach((p) => {
+        expect(typeof p.id).toBe('number');
+        expect(typeof p.name).toBe('string');
+        expect(typeof p.price).toBe('string');
+        expect(p.price).toMatch(/^Rs\.\s*\d+/);
+        expect(typeof p.brand).toBe('string');
+        expect(p.brand.length).toBeGreaterThan(0);
+        expect(p).toHaveProperty('category');
+        expect(p.category).toHaveProperty('usertype');
+        expect(p.category).toHaveProperty('category');
+      });
+
+      // data quality: unique ids
+      const ids = products.map((p) => p.id);
+      expect(new Set(ids).size).toBe(ids.length);
+    });
+  }
+
+  test('searchProductsInvalid @negative @search @api @product', async ({ request }) => {
+    const productsApi = new ProductsApi(request);
+    const response: SearchProductsResponse = await productsApi.searchProducts();
+    expect(response.responseCode).toBe(400);
+    expect(response.products).toBe(undefined);
   });
 });

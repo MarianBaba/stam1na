@@ -3,7 +3,7 @@ import { getUser } from '../resources/data/types/user';
 import { LoginSignupPage } from '../pages/automexe/LoginSignupPage';
 import SignUpPage from '../pages/automexe/SignUpPage';
 import { saveUser } from '../resources/data/types/user/save';
-import { User } from '../resources/data/types/user/types';
+import { User } from '../resources/data/types/user/User';
 
 test.describe('User Authentication', () => {
   test('registerUser @full-regression @authentication', async ({ page }) => {

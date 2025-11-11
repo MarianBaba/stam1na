@@ -2,7 +2,7 @@ import config from '@config';
 import { step } from '@decorators/step';
 import BasePage from '@pages/base/BasePage';
 import { expect, Locator } from 'playwright/test';
-import { User } from '@resources/data/types/user/types';
+import { User } from '@resources/data/types/user/User';
 import { Title } from '@enums/Title';
 
 export default class SignUpPage extends BasePage {

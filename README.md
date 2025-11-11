@@ -94,16 +94,19 @@ cd stam1na
 
 ### 🔍 Product Search APIs
 
-- [ ] **API 5 — POST Search Product (valid request)**
-- [ ] **API 6 — POST Search Product without required parameter (invalid request)**
+- [x] **API 5 — POST Search Product (valid request)**
+- [x] **API 6 — POST Search Product without required parameter (invalid request)**
 
 ### 🔐 Login & User Authentication APIs
 
-- [ ] **API 7 — POST Verify Login with valid credentials**
-- [ ] **API 8 — POST Verify Login without email parameter (invalid request)**
-- [ ] **API 9 — DELETE Verify Login (unsupported request)**
+- [x] **API 7 — POST Verify Login with valid credentials**
+- [x] **API 8 — POST Verify Login without email parameter (invalid request)**
+- [x] **API 9 — DELETE Verify Login (unsupported request)**
 
 ### 👤 User Account APIs
 
-- [ ] **API 10 — POST Create Account**
-- [ ] **API 11 — DELETE User Account**
+- [x] **API 10: POST To Verify Login with invalid details**
+- [x] **API 11 — POST Create Account**
+- [x] **API 12 — DELETE User Account**
+- [x] **API 13: PUT METHOD To Update User Account**
+- [x] **API 14: GET user account detail by email**

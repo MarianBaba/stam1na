@@ -15,9 +15,16 @@ export class BaseApi {
   }
 
   @step()
-  protected async post<T>(endpoint: string, data?: unknown): Promise<T> {
+  protected async post<T>(
+    endpoint: string,
+    data?: unknown,
+    opts?: { headers?: Record<string, string> }
+  ): Promise<T> {
     log(`POST ${config.API_BASE_URL}${endpoint}`);
-    const response = await this.request.post(`${config.API_BASE_URL}${endpoint}`, { data });
+    const response = await this.request.post(`${config.API_BASE_URL}${endpoint}`, {
+      data,
+      headers: opts?.headers,
+    });
     const text = await response.text();
     let json;
     try {
@@ -32,9 +39,16 @@ export class BaseApi {
   }
 
   @step()
-  protected async put<T>(endpoint: string, data?: unknown): Promise<T> {
+  protected async put<T>(
+    endpoint: string,
+    data?: unknown,
+    opts?: { headers?: Record<string, string> }
+  ): Promise<T> {
     log(`PUT ${config.API_BASE_URL}${endpoint}`);
-    const response = await this.request.put(`${config.API_BASE_URL}${endpoint}`, { data });
+    const response = await this.request.put(`${config.API_BASE_URL}${endpoint}`, {
+      data,
+      headers: opts?.headers,
+    });
     const text = await response.text();
     let json;
     try {
@@ -46,5 +60,30 @@ export class BaseApi {
       } as T;
     }
     return json;
+  }
+
+  @step()
+  protected async delete<T>(
+    endpoint: string,
+    data?: unknown,
+    opts?: { headers?: Record<string, string> }
+  ): Promise<T> {
+    const url = `${config.API_BASE_URL}${endpoint}`;
+    log(`DELETE ${url}`);
+
+    const response = await this.request.delete(url, {
+      data: data,
+      headers: opts?.headers,
+    });
+
+    const text = await response.text();
+    try {
+      return JSON.parse(text) as T;
+    } catch {
+      return {
+        responseCode: response.status(),
+        message: text as unknown,
+      } as T;
+    }
   }
 }

@@ -2,7 +2,7 @@ import { Locator, Page, expect } from '@playwright/test';
 import { step } from '@decorators/step';
 import BasePage from '@pages/base/BasePage';
 import config from '@config';
-import { User } from '@resources/data/types/user/types';
+import { User } from '@resources/data/types/user/User';
 
 export class LoginSignupPage extends BasePage {
   private readonly path = `/login`;

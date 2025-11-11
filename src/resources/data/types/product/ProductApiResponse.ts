@@ -8,3 +8,8 @@ export type ProductsPostResponse = {
   responseCode: number;
   message: string;
 };
+
+export type SearchProductsResponse = {
+  responseCode: number;
+  products: Product[];
+};
