@@ -17,7 +17,12 @@
     "format": "prettier --write \"**/*.{js,ts,json,css,md}\"",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "test:headed": "npx playwright test tests/ --headed",
-    "test:headless": "npx playwright test tests/"
+    "test:headless": "npx playwright test tests/",
+    "test:allure": "playwright test --reporter=list && echo \"Playwright finished\"",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results",
+    "test:allure:full": "npm run test && npm run allure:generate && npm run allure:open"
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
@@ -25,6 +30,8 @@
     "@types/node": "^24.0.14",
     "@typescript-eslint/eslint-plugin": "^8.37.0",
     "@typescript-eslint/parser": "^8.37.0",
+    "allure-commandline": "^2.34.1",
+    "allure-playwright": "^3.4.2",
     "axios": "^1.10.0",
     "dotenv": "^17.2.0",
     "eslint": "^9.31.0",

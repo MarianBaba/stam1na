@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
 import { UsersApi } from '@resources/api/UsersApi';
 import { UserFactory } from '@resources/data/factories/UserFactory';
+import { description } from 'allure-js-commons';
 import {
   UserCreateResponse,
   UserDeleteResponse,
@@ -11,6 +12,10 @@ import {
 
 test.describe('User Management API', () => {
   test('createNewUser @smoke @no-regression @api @user', async ({ request }) => {
+    await description(
+      'Verifies that a new user can be successfully created and handles duplicate user creation attempts gracefully.'
+    );
+
     const usersApi = new UsersApi(request);
     const user = UserFactory.create();
 
@@ -32,6 +37,10 @@ test.describe('User Management API', () => {
   });
 
   test('deleteUser @smoke @no-regression @api @user @delete', async ({ request }) => {
+    await description(
+      'Validates that an existing user can be deleted using their email and password.'
+    );
+
     const usersApi = new UsersApi(request);
     const user = UserFactory.create();
 
@@ -49,6 +58,10 @@ test.describe('User Management API', () => {
   });
 
   test('updateUser @smoke @no-regression @api @user @update', async ({ request }) => {
+    await description(
+      'Ensures that a users details can be successfully updated and verified by fetching the updated record.'
+    );
+
     const usersApi = new UsersApi(request);
     const user = UserFactory.create();
 
@@ -76,6 +89,10 @@ test.describe('User Management API', () => {
   });
 
   test('getUserDetailsByEmail @smoke @no-regression @api @user @get', async ({ request }) => {
+    await description(
+      'Checks that a user’s details can be retrieved using their email address and that the data matches the created record.'
+    );
+
     const usersApi = new UsersApi(request);
     const user = UserFactory.create();
 
@@ -97,6 +114,10 @@ test.describe('User Management API', () => {
   test('verifyLoginInvalid @smoke @no-regression @api @user @get @negative', async ({
     request,
   }) => {
+    await description(
+      'Verifies that attempting to log in with invalid credentials returns a “User not found” error.'
+    );
+
     const usersApi = new UsersApi(request);
 
     const email = 'nonexistent@example.com';
@@ -108,6 +129,10 @@ test.describe('User Management API', () => {
   });
 
   test('verifyLoginDeleteMethodNotAllowed @api @negative @user', async ({ request }) => {
+    await description(
+      'Ensures that sending a DELETE request to the login endpoint returns a 405 Method Not Allowed response.'
+    );
+
     const usersApi = new UsersApi(request);
 
     const resp: VerifyLoginResponse = await usersApi.verifyLoginWithDeleteMethod();
@@ -116,6 +141,10 @@ test.describe('User Management API', () => {
   });
 
   test('verifyLoginWithoutEmail @api @negative @user', async ({ request }) => {
+    await description(
+      'Validates that omitting the email parameter in the login request returns a 400 Bad Request error.'
+    );
+
     const usersApi = new UsersApi(request);
     const password = 'somepassword';
 
@@ -127,6 +156,10 @@ test.describe('User Management API', () => {
   test('verifyLoginWithValidDetails @smoke @no-regression @api @user @post', async ({
     request,
   }) => {
+    await description(
+      'Confirms that a valid user can successfully log in using correct credentials.'
+    );
+
     const usersApi = new UsersApi(request);
 
     const user = UserFactory.create();

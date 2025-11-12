@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test';
 import { ProductsApi } from '@resources/api/ProductsApi';
+import { description } from 'allure-js-commons';
 import {
   ProductsGetResponse,
   ProductsPostResponse,
@@ -8,6 +9,11 @@ import {
 
 test.describe('Products API', () => {
   test('getAllProducts @smoke @no-regression @api @product', async ({ request }) => {
+    await description(`
+      Verifies that the /productsList API successfully returns a list of all available products.
+      Ensures that each product contains valid attributes such as id, name, price, brand, and category.
+      Also checks that the product list is not empty.
+    `);
     const productsApi = new ProductsApi(request);
     const data: ProductsGetResponse = await productsApi.getAllProducts();
 
@@ -28,6 +34,11 @@ test.describe('Products API', () => {
   });
 
   test('postToProductsEndpoint @api @negative @product', async ({ request }) => {
+    await description(`
+      Ensures that the /productsList API correctly handles unsupported HTTP methods.
+      Sends a POST request to the endpoint (which only supports GET)
+      and verifies that it returns a 405 error with a proper message.
+    `);
     const productsApi = new ProductsApi(request);
     const response: ProductsPostResponse = await productsApi.postToProductsEndpoint();
 
@@ -41,6 +52,10 @@ test.describe('Products API', () => {
     test(`searchProducts${product} @smoke @no-regression @search @api @product`, async ({
       request,
     }) => {
+      await description(`
+        Validates that the /searchProduct API successfully returns results for the search keyword "${product}".
+        Verifies that each returned product has valid attributes and that product IDs are unique.
+      `);
       const productsApi = new ProductsApi(request);
 
       const response: SearchProductsResponse = await productsApi.searchProducts(product);
@@ -71,6 +86,11 @@ test.describe('Products API', () => {
   }
 
   test('searchProductsInvalid @negative @search @api @product', async ({ request }) => {
+    await description(`
+      Ensures that the /searchProduct API properly handles invalid requests.
+      Sends a POST request without the required 'search_product' parameter and
+      expects a 400 response indicating a bad request.
+    `);
     const productsApi = new ProductsApi(request);
     const response: SearchProductsResponse = await productsApi.searchProducts();
     expect(response.responseCode).toBe(400);
